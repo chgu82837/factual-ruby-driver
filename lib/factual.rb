@@ -166,6 +166,13 @@ class Factual
     end
   end
 
+  def available?
+    availability.each do |k,v|
+      return false if v[0] == false
+    end
+    return true
+  end
+
   private
 
   def generate_token(key, secret)

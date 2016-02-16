@@ -156,7 +156,7 @@ class Factual
   end
 
   def x_factual_throttle_allocation
-    @api.x_factual_throttle_allocation
+    @api.x_factual_throttle_allocation || {}
   end
 
   def availability

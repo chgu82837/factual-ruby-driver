@@ -159,16 +159,9 @@ class Factual
     @api.x_factual_throttle_allocation || {}
   end
 
-  def availability
-    x_factual_throttle_allocation.map do |k,v|
-      vt = v.chop.to_f
-      [vt < 99.0, vt]
-    end
-  end
-
-  def available?
-    availability.each do |v|
-      return false if v[0] == false
+  def today_available?(x_factual_throttle_allocation)
+    x_factual_throttle_allocation.each do |k,v|
+      return false if v.chop.to_f >= 99.0 && k == "daily"
     end
     return true
   end

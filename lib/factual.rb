@@ -167,7 +167,7 @@ class Factual
   end
 
   def available?
-    availability.each do |k,v|
+    availability.each do |v|
       return false if v[0] == false
     end
     return true

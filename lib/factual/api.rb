@@ -73,6 +73,10 @@ class Factual
       fp
     end
 
+    def x_factual_throttle_allocation
+      @x_factual_throttle_allocation
+    end
+
     private
 
     def handle_request(action, path, params, method=:get)
@@ -84,6 +88,9 @@ class Factual
         req = make_request(url, params, :post)
       end
       payload = JSON.parse(req.body)
+
+      x_factual_throttle_allocation = req.to_hash["x-factual-throttle-allocation"]
+      @x_factual_throttle_allocation = JSON.parse(x_factual_throttle_allocation[0]) unless x_factual_throttle_allocation.nil?
 
       if (path == '/multi')
          payload.inject({}) do |res, item|

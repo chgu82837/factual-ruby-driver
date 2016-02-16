@@ -155,6 +155,17 @@ class Factual
     Write::Insert.new(@api, insert_params)
   end
 
+  def x_factual_throttle_allocation
+    @api.x_factual_throttle_allocation
+  end
+
+  def availability
+    x_factual_throttle_allocation.map do |k,v|
+      vt = v.chop.to_f
+      [vt < 99.0, vt]
+    end
+  end
+
   private
 
   def generate_token(key, secret)
